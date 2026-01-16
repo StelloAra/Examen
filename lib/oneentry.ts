@@ -1,8 +1,8 @@
 import { defineOneEntry } from 'oneentry';
 import type { IError } from 'oneentry/dist/base/utils';
 
-import retrieveRefreshToken from '@/actions/auth/retrieveRefreshToken';
-import storeRefreshToken from '@/actions/auth/storeRefreshToken';
+import retrieveRefreshToken from '@/app/actions/auth/retrieveRefreshToken';
+import storeRefreshToken from '@/app/actions/auth/storeRefreshToken';
 
 export type ApiClientType = ReturnType<typeof defineOneEntry> | null;
 
@@ -21,7 +21,7 @@ async function setupApiClient(): Promise<ReturnType<typeof defineOneEntry>> {
       const refreshToken = await retrieveRefreshToken();
 
       apiClient = defineOneEntry(apiUrl, {
-        token: process.env.ONENETRY_TOKEN,
+        token: process.env.ONEENTRY_TOKEN,
         langCode: 'en_US',
         auth: {
           refreshToken: refreshToken || undefined, 

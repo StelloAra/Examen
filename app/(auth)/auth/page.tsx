@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getSignupFormData, handleSignupSubmit } from "@/actions/auth/signup";
-import { getLoginFormData, handleLoginSubmit } from "@/actions/auth/login";
+import {
+  getSignupFormData,
+  handleSignupSubmit,
+} from "@/app/actions/auth/signup";
+import { getLoginFormData, handleLoginSubmit } from "@/app/actions/auth/login";
 import { IAttributes } from "oneentry/dist/base/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";

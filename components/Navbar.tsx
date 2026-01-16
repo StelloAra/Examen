@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ShoppingCart, User, Menu, X, LogOut, Search } from "lucide-react";
+import SearchBar from "./SearchBar";
+import { Ban, ShoppingCart, User, Menu, X, LogOut, Search } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,8 +15,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import getUserSession from "@/actions/auth/getUserSession";
-import logoutAction from "@/actions/auth/logout";
+import getUserSession from "@/app/actions/auth/getUserSession";
+import logoutAction from "@/app/actions/auth/logout";
 import { useRouter } from "next/navigation";
 import { IUserEntity } from "oneentry/dist/users/usersInterfaces";
 
@@ -141,28 +142,26 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {/* Search Bar */}
-            <div className="relative group">
-              <form onSubmit={handleSearch} className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-900 h-5 w-5 transition-colors group-focus-within:text-cyan-600" />
-                <Input
-                  type="text"
-                  placeholder="Search animals..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 pr-4 py-3 w-80 bg-cyan-50/80 dark:bg--900/20 border-0 rounded-2xl backdrop-blur-sm transition-all duration-300 focus:bg-white dark:focus:bg-cyan-900/30 focus:shadow-lg focus:scale-105 placeholder:text-gray-400 focus:ring-2 focus:ring-red-200"
-                />
-              </form>
+            {/* Desktop sökbar */}
+            <div className="hidden lg:flex items-center space-x-8">
+              <SearchBar
+                {...({
+                  searchQuery,
+                  setSearchQuery,
+                  onSearch: handleSearch,
+                  className: "w-80",
+                } as any)}
+              />
             </div>
 
             {/* Cart Button */}
-            <Link href="/cart" onClick={handleMenuItemClick}>
+            <Link href="/admin" onClick={handleMenuItemClick}>
               <Button
                 size="icon"
                 className="relative h-12 w-12 rounded-2xl bg-sky-50/80 hover:bg-sky-100 dark:bg-sky-900/20 dark:hover:bg-sky-900/40 border-0 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105 group cursor-pointer"
                 variant="ghost"
               >
-                <ShoppingCart className="h-6 w-6 text-sky-600 dark:text-sky-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300" />
+                <Ban className="h-6 w-6 text-sky-600 dark:text-sky-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300" />
               </Button>
             </Link>
 
@@ -286,28 +285,27 @@ export default function Navbar() {
           className="lg:hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-200/50 dark:border-gray-800/50 shadow-2xl animate-in slide-in-from-top-2 duration-200"
         >
           <div className="px-6 pt-6 pb-4 space-y-4">
-            {/* Mobile Search */}
-            <form onSubmit={handleSearch} className="relative group">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5 transition-colors group-focus-within:text-red-600" />
-              <Input
-                type="text"
-                placeholder="Search animals..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-4 py-4 bg-cyan-50 dark:bg-cyan-900/20 border-0 rounded-2xl focus:bg-white dark:focus:bg-red-900/30 focus:shadow-lg transition-all duration-300 placeholder:text-gray-400 text-base focus:ring-2 focus:ring-red-200"
+            {/* Mobil sökbar */}
+            <div className="lg:hidden">
+              <SearchBar
+                {...({
+                  searchQuery,
+                  setSearchQuery,
+                  onSearch: handleSearch,
+                } as any)}
               />
-            </form>
+            </div>
 
             {/* Mobile Cart */}
             <Link
-              href="/cart"
+              href="/admin"
               className="flex items-center justify-between p-4 rounded-2xl bg-sky-50 dark:bg-sky-900/20 hover:bg-sky-100 dark:hover:bg-sky-900/40 transition-all duration-300 group cursor-pointer"
               onClick={handleMenuItemClick}
             >
               <div className="flex items-center">
-                <ShoppingCart className="h-6 w-6 text-sky-600 dark:text-sky-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 mr-3" />
+                <Ban className="h-6 w-6 text-sky-600 dark:text-sky-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors duration-300 mr-3" />
                 <span className="font-medium text-gray-900 dark:text-gray-100">
-                  Cart
+                  Admin Dashboard
                 </span>
               </div>
             </Link>
@@ -354,17 +352,6 @@ export default function Navbar() {
                     <User className="h-6 w-6 text-cyan-600 dark:text-cyan-400 mr-3" />
                     <span className="font-medium text-gray-900 dark:text-gray-100">
                       Your Profile
-                    </span>
-                  </Link>
-
-                  <Link
-                    href="/orders"
-                    className="flex items-center p-4 rounded-2xl hover:bg-sky-50 dark:hover:bg-sky-950/30 transition-all duration-300 group cursor-pointer"
-                    onClick={handleMenuItemClick}
-                  >
-                    <ShoppingCart className="h-6 w-6 text-sky-600 dark:text-sky-400 mr-3" />
-                    <span className="font-medium text-gray-900 dark:text-gray-100">
-                      Meals
                     </span>
                   </Link>
 
