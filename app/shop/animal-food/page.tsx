@@ -42,7 +42,7 @@ export default async function DonationPage({
   const packages = await getDonationPackages();
 
   return (
-    <main className="container mx-auto px-6 py-16 text-center">
+    <main className="container mx-auto px-6 py-16 text-center text-cyan-700">
       {/* Title */}
       <h1 className="text-4xl font-bold mb-4">
         Support {animal.attributeValues.title.value} 🐾
@@ -51,9 +51,9 @@ export default async function DonationPage({
       {/* ⭐ Back button */}
       <a
         href={`/animals/${animal.id}`}
-        className="inline-block mt-4 mb-10 px-6 py-3 bg-gray-200 dark:bg-gray-700
-                   text-gray-800 dark:text-gray-200 rounded-xl font-semibold
-                   hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+        className="inline-block mt-4 mb-10 px-6 py-3 bg-cyan-200 dark:bg-cyan-700
+                   text-cyan-800 dark:text-cyan-200 rounded-xl font-semibold
+                   hover:bg-cyan-300 dark:hover:bg-cyan-600 transition"
       >
         ← Back to {animal.attributeValues.title.value}
       </a>
