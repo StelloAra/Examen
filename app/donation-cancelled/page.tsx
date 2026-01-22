@@ -6,7 +6,7 @@ export default function DonationCancelled() {
 
       <a
         href="/#animals"
-        className="px-6 py-3 bg-gray-200 rounded-xl hover:bg-gray-300"
+        className="px-6 py-3 bg-cyan-500 text-white rounded-xl hover:bg-cyan-600"
       >
         Back to animals
       </a>

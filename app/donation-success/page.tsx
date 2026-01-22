@@ -10,7 +10,7 @@ export default function DonationSuccess() {
 
       <a
         href="/#animals"
-        className="px-6 py-3 bg-orange-500 text-white rounded-xl hover:bg-orange-600"
+        className="px-6 py-3 bg-cyan-500 text-white rounded-xl hover:bg-cyan-600"
       >
         Back to animals
       </a>

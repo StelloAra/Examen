@@ -31,7 +31,7 @@ export default async function DonationPage({
         <h1 className="text-3xl font-bold mb-6">Animal not found ❌</h1>
         <a
           href="/animals"
-          className="inline-block px-6 py-3 bg-gray-200 rounded-xl font-semibold hover:bg-gray-300 transition"
+          className="inline-block px-6 py-3 bg-cyan-200 rounded-xl font-semibold text-cyan-700 hover:bg-cyan-300 transition"
         >
           ← Back to animals
         </a>
@@ -70,7 +70,7 @@ export default async function DonationPage({
           <div
             key={pkg.id}
             className="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-lg
-                       border-2 border-transparent hover:border-orange-400
+                       border-2 border-transparent hover:border-cyan-400
                        transition-all group"
           >
             <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">
@@ -85,7 +85,7 @@ export default async function DonationPage({
               {pkg.attributeValues.description?.value}
             </p>
 
-            <div className="text-3xl font-black text-orange-600 mb-6">
+            <div className="text-3xl font-black text-cyan-600 mb-6">
               {pkg.attributeValues.price?.value} kr
             </div>
 
@@ -108,8 +108,8 @@ export default async function DonationPage({
 
               <button
                 type="submit"
-                className="w-full py-3 bg-orange-500 text-white rounded-xl 
-               font-bold hover:bg-orange-600 shadow-md transition"
+                className="w-full py-3 bg-cyan-400 text-white rounded-xl 
+               font-bold hover:bg-cyan-600 shadow-md transition"
               >
                 Donate via Stripe
               </button>
